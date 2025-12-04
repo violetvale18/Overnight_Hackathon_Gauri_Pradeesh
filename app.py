@@ -1,7 +1,7 @@
 import streamlit as st
 from openai import OpenAI
 
-client = OpenAI(api_key="YOUR_API_KEY")
+client = OpenAI(api_key="sk-proj-UrPPgeel0EU1Ylv4niIHFBJ49GeiXA-kC4H0rh2p3GTbwHxeLxJOU7MPzNOaCj9m6Dtq2IN6NxT3BlbkFJpxpHMK-_9hTCWbfp2eIhVFB2mLRFvt5oxEMU8DadMCFhkiR5MaEZ5Lpv1DhL1VCqxGLqeHuS8AY")
 
 st.title("💬 Multilingual AI Loan Advisor")
 
@@ -34,3 +34,4 @@ if user_input:
     reply = response.choices[0].message.content
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.chat_message("assistant").write(reply)
+
