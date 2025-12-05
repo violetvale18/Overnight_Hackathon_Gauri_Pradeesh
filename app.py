@@ -6,6 +6,7 @@ import streamlit as st
 from streamlit_mic_recorder import mic_recorder
 
 
+
 def calculate_loan_approval(income, loan_amount, credit_score):
     # Basic rule logic:
     # 1. Income must be ≥ 2x EMI
@@ -156,7 +157,13 @@ def choose_working_model(client, prompt):
 # -------------------
 st.set_page_config(page_title="AI Loan Assistant", layout="centered")
 
-st.title("AI Loan Assistant")
+st.markdown("""
+<div style="text-align:center; font-size:32px; font-weight:700;">
+💰 AI Loan Assistant
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("<hr style='border:1px solid #ccc;'>", unsafe_allow_html=True)
 
 # Validate API key present
 if not API_KEY or API_KEY.startswith("PASTE_YOUR"):
@@ -202,11 +209,18 @@ if "messages" not in st.session_state:
     st.session_state.messages = [("assistant", "Hi — I'm your loan assistant. Ask about eligibility, documents, or loan types.")]
 
 # display messages
-for role, text in st.session_state.messages:
-    st.chat_message(role).write(text)
+with st.container():
+    for role, text in st.session_state.messages:
+        if role == "user":
+            st.chat_message("user").write(f"🧑‍💼 {text}")
+        else:
+            st.chat_message("assistant").write(f"🤖 {text}")
+
 
 # --- Speech to Text Input ---
+st.markdown("<br><b>🎙 Voice Input</b><br>", unsafe_allow_html=True)
 audio = mic_recorder(start_prompt="🎤 Speak", stop_prompt="🛑 Stop", key="voice")
+st.markdown("<br>", unsafe_allow_html=True)
 
 spoken_text = None
 if audio:
@@ -303,3 +317,10 @@ User: {user_input}
         # For debugging in sidebar, show more if needed
         with st.expander("Full debug trace (click to expand)"):
             st.text("\n".join(tb))
+
+st.markdown("""
+<br><br>
+<div style='text-align:center; color:gray; font-size:14px;'>
+🔹 Prototype: AI Loan Assistant • Team Titans 🔹
+</div>
+""", unsafe_allow_html=True)
