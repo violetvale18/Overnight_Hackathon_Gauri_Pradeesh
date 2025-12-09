@@ -36,7 +36,7 @@ from gtts import gTTS
 # -----------------------
 # CONFIG: Paste your key:
 # -----------------------
-API_KEY = "AIzaSyDgf0vnBPc9Enpw1fetv62s5ZCKRZpufVo"  # <-- PUT KEY HERE (AIza...); do NOT commit to public repo
+API_KEY = ""  # <-- PUT KEY HERE (AIza...); do NOT commit to public repo
 
 # Default model preference (will auto-fallback if unavailable)
 PREFERRED_MODELS = [
@@ -324,3 +324,4 @@ st.markdown("""
 🔹 Prototype: AI Loan Assistant • Team Titans 🔹
 </div>
 """, unsafe_allow_html=True)
+
